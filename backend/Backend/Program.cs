@@ -30,8 +30,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapControllers();
-
 app.MapIdentityApi<User>();
+
+app.MapControllers();
 
 app.Run();

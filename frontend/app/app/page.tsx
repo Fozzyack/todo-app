@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import AddTodoPanel from "@/components/AddTodoPanel";
 import LogoutButton from "@/components/LogoutButton";
 
 const DashboardPage = () => {
@@ -7,6 +8,7 @@ const DashboardPage = () => {
             <div className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-8">
                 <Card className="flex flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-2">
+                        <span className="h-3 w-12 bg-accent-orange shadow-brutal-orange" />
                         <p className="font-mono text-xs uppercase tracking-[0.35em] text-accent-orange">
                             Dashboard
                         </p>
@@ -26,12 +28,7 @@ const DashboardPage = () => {
                             <h2>Current Todos</h2>
                         </div>
                     </Card>
-                    <Card className="flex md:col-span-5 flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
-                        <div>
-                            <h2>Current Todos</h2>
-                        </div>
-                    </Card>
-                    
+                    <AddTodoPanel />
                 </div>
             </div>
         </main>
