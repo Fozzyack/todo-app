@@ -1,4 +1,4 @@
-const backendURL = process.env.BACKEND_URL;
+const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 export const getBackendUrl = () => {
     if (!backendURL) {
