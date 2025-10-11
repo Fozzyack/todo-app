@@ -52,7 +52,7 @@ const AddTodoPanel = () => {
 
     if (loading) {
         return (
-            <Card className="md:col-span-5 flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
+            <Card className="md:col-span-5 md:order-last flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
                 <div className="flex flex-col items-center justify-center">
                     <svg
                         aria-hidden="true"
@@ -77,7 +77,7 @@ const AddTodoPanel = () => {
     }
 
     return (
-        <Card className="md:col-span-5 flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
+        <Card className="hidden md:col-span-5 md:order-last md:flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
             <div className="space-y-7">
                 <div className="space-y-3">
                     <div className="flex items-center gap-3">
@@ -95,7 +95,7 @@ const AddTodoPanel = () => {
                     </p>
                 </div>
                 <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <label
                             className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
                             htmlFor="todo-name"
@@ -103,7 +103,7 @@ const AddTodoPanel = () => {
                             Name
                         </label>
                         <input
-                            className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-muted focus:-translate-y-1 focus:-translate-x-1 focus:border-secondary focus:outline-none focus:shadow-brutal-secondary-sm"
+                            className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
                             id="todo-name"
                             name="name"
                             placeholder="e.g. Draft release notes"
@@ -111,7 +111,7 @@ const AddTodoPanel = () => {
                             type="text"
                         />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <label
                             className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
                             htmlFor="todo-description"
@@ -119,14 +119,14 @@ const AddTodoPanel = () => {
                             Description
                         </label>
                         <textarea
-                            className="h-32 w-full resize-none border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-muted focus:-translate-y-1 focus:-translate-x-1 focus:border-secondary focus:outline-none focus:shadow-brutal-secondary-sm"
+                            className="h-32 w-full resize-none border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
                             id="todo-description"
                             name="description"
                             onChange={handleFormChange}
                             placeholder="Give a quick overview so future you knows what to do."
                         />
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                         <label
                             className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
                             htmlFor="todo-due"
@@ -134,7 +134,7 @@ const AddTodoPanel = () => {
                             Due
                         </label>
                         <input
-                            className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-brutal-muted focus:-translate-y-1 focus:-translate-x-1 focus:border-secondary focus:outline-none focus:shadow-brutal-secondary-sm"
+                            className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
                             id="todo-due"
                             onChange={handleFormChange}
                             name="date"

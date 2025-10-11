@@ -8,10 +8,12 @@ const DashboardPage = () => {
             <div className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-8">
                 <Card className="flex flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-2">
-                        <span className="h-3 w-12 bg-primary shadow-brutal-primary" />
+                        <div className="flex items-center gap-4">
+                        <div className="h-3 w-12 bg-primary shadow-brutal-primary" />
                         <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
                             Dashboard
                         </p>
+                        </div>
                         <h1 className="text-white sm:text-4xl">
                             ToDoList Command Center
                         </h1>
@@ -23,12 +25,12 @@ const DashboardPage = () => {
                     <LogoutButton />
                 </Card>
                 <div className="grid md:grid-cols-12 gap-4">
-                    <Card className="flex md:col-span-7 flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:items-center sm:justify-between mt-10">
+                    <AddTodoPanel />
+                    <Card className="flex md:col-span-7 flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:justify-between mt-10">
                         <div>
-                            <h2>Current Todos</h2>
+                            <h2>Todos</h2>
                         </div>
                     </Card>
-                    <AddTodoPanel />
                 </div>
             </div>
         </main>
