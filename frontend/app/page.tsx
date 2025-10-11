@@ -124,7 +124,7 @@ export default function Home() {
                                             {entry.step}
                                         </span>
                                         <div className="space-y-1">
-                                            <h3 className="font-mono text-base font-bold uppercase text-white">{entry.title}</h3>
+                                             <h3 className="font-mono font-bold uppercase text-white">{entry.title}</h3>
                                             <p className="font-mono text-sm text-slate-400">{entry.copy}</p>
                                         </div>
                                     </div>

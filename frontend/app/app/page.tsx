@@ -10,7 +10,7 @@ const DashboardPage = () => {
                         <p className="font-mono text-xs uppercase tracking-[0.35em] text-accent-orange">
                             Dashboard
                         </p>
-                        <h1 className="text-3xl font-semibold text-white sm:text-4xl">
+                        <h1 className="text-white sm:text-4xl">
                             ToDoList Command Center
                         </h1>
                         <p className="text-sm text-slate-400">
@@ -20,11 +20,19 @@ const DashboardPage = () => {
                     </div>
                     <LogoutButton />
                 </Card>
-                <Card className="flex flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
-                    <div>
-                        <h2>Current Todos</h2>
-                    </div>
-                </Card>
+                <div className="grid md:grid-cols-12 gap-4">
+                    <Card className="flex md:col-span-7 flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
+                        <div>
+                            <h2>Current Todos</h2>
+                        </div>
+                    </Card>
+                    <Card className="flex md:col-span-5 flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
+                        <div>
+                            <h2>Current Todos</h2>
+                        </div>
+                    </Card>
+                    
+                </div>
             </div>
         </main>
     );

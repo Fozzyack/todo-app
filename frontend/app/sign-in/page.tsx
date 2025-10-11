@@ -103,7 +103,7 @@ export default function SignInPage() {
                             <span className="inline-flex items-center gap-2 border-4 border-accent-purple bg-navy px-5 py-2 font-mono text-xs uppercase tracking-[0.45em] text-accent-purple shadow-brutal-blue">
                                 [SIGNUP::ACCESS_REQUEST]
                             </span>
-                            <h1 className="font-mono text-4xl font-black uppercase leading-tight text-white sm:text-5xl">
+                            <h1 className="font-mono font-black uppercase text-white sm:text-5xl">
                                 Request Crew Credentials
                             </h1>
                             <p className="mx-auto max-w-xl border-l-4 border-accent-purple bg-navy/60 pl-4 font-mono text-xs uppercase tracking-[0.3em] text-slate-400 lg:mx-0 lg:text-sm">
