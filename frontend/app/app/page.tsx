@@ -1,13 +1,15 @@
 import Card from "@/components/Card";
+import AddTodoPanel from "@/components/AddTodoPanel";
 import LogoutButton from "@/components/LogoutButton";
 
 const DashboardPage = () => {
     return (
-        <main className="min-h-screen bg-navy text-slate-100">
+        <main className="min-h-screen bg-background text-slate-100">
             <div className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-8">
-                <Card className="flex flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between">
+                <Card className="flex flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-2">
-                        <p className="font-mono text-xs uppercase tracking-[0.35em] text-accent-orange">
+                        <span className="h-3 w-12 bg-primary shadow-brutal-primary" />
+                        <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
                             Dashboard
                         </p>
                         <h1 className="text-white sm:text-4xl">
@@ -21,17 +23,12 @@ const DashboardPage = () => {
                     <LogoutButton />
                 </Card>
                 <div className="grid md:grid-cols-12 gap-4">
-                    <Card className="flex md:col-span-7 flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
+                    <Card className="flex md:col-span-7 flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:items-center sm:justify-between mt-10">
                         <div>
                             <h2>Current Todos</h2>
                         </div>
                     </Card>
-                    <Card className="flex md:col-span-5 flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
-                        <div>
-                            <h2>Current Todos</h2>
-                        </div>
-                    </Card>
-                    
+                    <AddTodoPanel />
                 </div>
             </div>
         </main>

@@ -12,9 +12,9 @@ const terminalBanner = [
 ].join("\n");
 
 const heroStats = [
-    { label: "SESSION", value: "ID-907A", accent: "text-accent-blue" },
-    { label: "ENV", value: "LIVE OPS", accent: "text-accent-orange" },
-    { label: "STATUS", value: "READY", accent: "text-accent-purple" },
+    { label: "SESSION", value: "ID-907A", accent: "text-secondary" },
+    { label: "ENV", value: "LIVE OPS", accent: "text-primary" },
+    { label: "STATUS", value: "READY", accent: "text-tertiary" },
 ];
 
 const highlightBlocks = [
@@ -85,26 +85,26 @@ export default function LoginPage() {
         }
     };
     return (
-        <main className="relative isolate min-h-dvh overflow-hidden bg-navy text-slate-200">
+        <main className="relative isolate min-h-dvh overflow-hidden bg-background text-slate-200">
             <div className="absolute inset-0 -z-10" aria-hidden="true">
-                <div className="absolute inset-0 bg-navy" />
-                <div className="absolute -top-32 left-1/3 h-[420px] w-[420px] bg-accent-blue/20 blur-3xl" />
-                <div className="absolute bottom-[-120px] right-[15%] h-80 w-80 bg-accent-purple/20 blur-3xl" />
-                <div className="absolute bottom-[-60px] left-6 h-64 w-64 bg-accent-orange/20 blur-3xl" />
-                <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-accent-blue/40 to-transparent opacity-40" />
+                <div className="absolute inset-0 bg-background" />
+                <div className="absolute -top-32 left-1/3 h-[420px] w-[420px] bg-secondary/20 blur-3xl" />
+                <div className="absolute bottom-[-120px] right-[15%] h-80 w-80 bg-tertiary/20 blur-3xl" />
+                <div className="absolute bottom-[-60px] left-6 h-64 w-64 bg-primary/20 blur-3xl" />
+                <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-secondary/40 to-transparent opacity-40" />
             </div>
 
             <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col justify-center px-6 py-12 sm:px-8">
                 <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <section className="space-y-8 text-center lg:text-left">
                         <div className="space-y-5">
-                            <span className="inline-flex items-center gap-2 border-4 border-accent-blue bg-navy px-5 py-2 font-mono text-xs uppercase tracking-[0.45em] text-accent-blue shadow-brutal-blue">
+                            <span className="inline-flex items-center gap-2 border-4 border-secondary bg-background px-5 py-2 font-mono text-xs uppercase tracking-[0.45em] text-secondary shadow-brutal-secondary">
                                 [LOGIN::PORTAL]
                             </span>
                             <h1 className="font-mono font-black uppercase text-white sm:text-5xl">
                                 Authenticate To Access Command Deck
                             </h1>
-                            <p className="mx-auto max-w-xl border-l-4 border-accent-blue bg-navy/60 pl-4 font-mono text-xs uppercase tracking-[0.3em] text-slate-400 lg:mx-0 lg:text-sm">
+                            <p className="mx-auto max-w-xl border-l-4 border-secondary bg-background/60 pl-4 font-mono text-xs uppercase tracking-[0.3em] text-slate-400 lg:mx-0 lg:text-sm">
                                 SUBMIT VERIFIED HANDLE AND PASSPHRASE. SECURITY
                                 FIREWALL IS LIVE AND MIRRORING TRAFFIC.
                             </p>
@@ -114,7 +114,7 @@ export default function LoginPage() {
                             {heroStats.map((item) => (
                                 <div
                                     key={item.label}
-                                    className="border-4 border-border-slate bg-navy-dark px-4 py-3 font-mono text-xs uppercase text-slate-400 shadow-brutal-slate-sm"
+                                    className="border-4 border-border bg-background-dark px-4 py-3 font-mono text-xs uppercase text-slate-400 shadow-brutal-muted-sm"
                                 >
                                     <span
                                         className={item.accent}
@@ -130,9 +130,9 @@ export default function LoginPage() {
                             {highlightBlocks.map((item) => (
                                 <div
                                     key={item.tag}
-                                    className="border-4 border-border-slate bg-navy/80 px-4 py-3 font-mono text-[0.65rem] uppercase leading-snug text-slate-300 shadow-brutal-slate-sm sm:text-xs"
+                                    className="border-4 border-border bg-background/80 px-4 py-3 font-mono text-[0.65rem] uppercase leading-snug text-slate-300 shadow-brutal-muted-sm sm:text-xs"
                                 >
-                                    <div className="text-accent-blue">
+                                    <div className="text-secondary">
                                         {item.tag}
                                     </div>
                                     <p className="mt-1 text-slate-400">
@@ -143,16 +143,16 @@ export default function LoginPage() {
                         </div>
                     </section>
 
-                    <Card className="border-accent-blue bg-navy-dark/85 shadow-brutal-blue-lg">
+                    <Card className="border-secondary bg-background-dark/85 shadow-brutal-secondary-lg">
                         <div className="flex flex-col gap-6 font-mono text-xs uppercase">
-                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border-slate bg-navy px-5 py-3 text-accent-blue shadow-brutal-slate-sm">
+                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border bg-background px-5 py-3 text-secondary shadow-brutal-muted-sm">
                                 <span>[AUTH_CONSOLE]</span>
                                 <span className="text-slate-400">
                                     SECURE SOCKET OPEN
                                 </span>
                             </div>
 
-                            <pre className="overflow-hidden border-4 border-border-slate bg-navy-dark p-5 text-sm leading-6 text-accent-blue shadow-brutal-slate">
+                            <pre className="overflow-hidden border-4 border-border bg-background-dark p-5 text-sm leading-6 text-secondary shadow-brutal-muted">
                                 {terminalBanner}
                             </pre>
 
@@ -161,7 +161,7 @@ export default function LoginPage() {
                                 className="grid gap-5 text-sm"
                             >
                                 {error && (
-                                    <div className="border-4 border-rose-500 bg-rose-500/10 px-4 py-3 font-mono text-xs uppercase text-rose-400 shadow-brutal-slate-sm">
+                                    <div className="border-4 border-rose-500 bg-rose-500/10 px-4 py-3 font-mono text-xs uppercase text-rose-400 shadow-brutal-muted-sm">
                                         <span className="font-black">
                                             [ERROR]{" "}
                                         </span>
@@ -177,7 +177,7 @@ export default function LoginPage() {
                                         value={email}
                                         onChange={handleEmailInput}
                                         placeholder="enter handle"
-                                        className="border-4 border-border-slate bg-navy px-4 py-3 text-base uppercase text-accent-blue shadow-brutal-slate-sm transition-all placeholder:text-slate-600 focus:border-accent-blue focus:text-accent-blue focus:outline-none focus:shadow-brutal-blue-sm"
+                                        className="border-4 border-border bg-background px-4 py-3 text-base uppercase text-secondary shadow-brutal-muted-sm transition-all placeholder:text-slate-600 focus:border-secondary focus:text-secondary focus:outline-none focus:shadow-brutal-secondary-sm"
                                         required
                                     />
                                 </label>
@@ -189,14 +189,14 @@ export default function LoginPage() {
                                         value={password}
                                         onChange={handlePasswordInput}
                                         placeholder="enter passphrase"
-                                        className="border-4 border-border-slate bg-navy px-4 py-3 text-base uppercase text-accent-blue shadow-brutal-slate-sm transition-all placeholder:text-slate-600 focus:border-accent-blue focus:text-accent-blue focus:outline-none focus:shadow-brutal-blue-sm"
+                                        className="border-4 border-border bg-background px-4 py-3 text-base uppercase text-secondary shadow-brutal-muted-sm transition-all placeholder:text-slate-600 focus:border-secondary focus:text-secondary focus:outline-none focus:shadow-brutal-secondary-sm"
                                         required
                                     />
                                 </label>
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center justify-center gap-3 border-4 border-navy bg-accent-orange px-6 py-3 font-black uppercase tracking-[0.35em] text-navy shadow-brutal-blue transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-blue-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                                    className="inline-flex items-center justify-center gap-3 border-4 border-background bg-primary px-6 py-3 font-black uppercase tracking-[0.35em] text-background shadow-brutal-secondary transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-secondary-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                                 >
                                     {loading
                                         ? "Authenticating..."
@@ -207,7 +207,7 @@ export default function LoginPage() {
                                 </button>
                             </form>
 
-                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border-slate bg-navy px-4 py-3 shadow-brutal-slate-sm">
+                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border bg-background px-4 py-3 shadow-brutal-muted-sm">
                                 {securityChecklist.map((item) => (
                                     <div
                                         key={item.label}
@@ -225,7 +225,7 @@ export default function LoginPage() {
 
                             <Link
                                 href="/sign-in"
-                                className="inline-flex w-max items-center gap-2 border-4 border-border-slate bg-navy px-4 py-2 font-black text-accent-blue shadow-brutal-slate-sm transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:text-accent-orange"
+                                className="inline-flex w-max items-center gap-2 border-4 border-border bg-background px-4 py-2 font-black text-secondary shadow-brutal-muted-sm transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:text-primary"
                             >
                                 Need clearance? Request Access
                             </Link>

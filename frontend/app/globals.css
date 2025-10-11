@@ -5,27 +5,27 @@
 
 @theme {
     /* Background Colors */
-    --color-navy: #0a1628;
-    --color-navy-dark: #050d1a;
+    --color-background: #0a1628;
+    --color-background-dark: #050d1a;
 
     /* Accent Colors */
-    --color-accent-orange: #fb923c;
-    --color-accent-blue: #60a5fa;
-    --color-accent-purple: #c084fc;
+    --color-primary: #fb923c;
+    --color-secondary: #60a5fa;
+    --color-tertiary: #c084fc;
 
     /* Border Colors */
-    --color-border-slate: #475569;
-    --color-border-slate-dark: #334155;
+    --color-border: #475569;
+    --color-border-dark: #334155;
 
     /* Brutal Shadows */
-    --shadow-brutal-blue: 8px 8px 0 0 #1e3a8a;
-    --shadow-brutal-blue-lg: 12px 12px 0 0 #1e3a8a;
-    --shadow-brutal-slate: 8px 8px 0 0 #1e293b;
-    --shadow-brutal-slate-sm: 4px 4px 0 0 #1e293b;
-    --shadow-brutal-slate-lg: 12px 12px 0 0 #1e293b;
-    --shadow-brutal-orange: 4px 4px 0 0 #c2410c;
-    --shadow-brutal-orange-lg: 8px 8px 0 0 #c2410c;
-    --shadow-brutal-blue-sm: 6px 6px 0 0 #1e3a8a;
+    --shadow-brutal-secondary: 8px 8px 0 0 #1e3a8a;
+    --shadow-brutal-secondary-lg: 12px 12px 0 0 #1e3a8a;
+    --shadow-brutal-muted: 8px 8px 0 0 #1e293b;
+    --shadow-brutal-muted-sm: 4px 4px 0 0 #1e293b;
+    --shadow-brutal-muted-lg: 12px 12px 0 0 #1e293b;
+    --shadow-brutal-primary: 4px 4px 0 0 #c2410c;
+    --shadow-brutal-primary-lg: 8px 8px 0 0 #c2410c;
+    --shadow-brutal-secondary-sm: 6px 6px 0 0 #1e3a8a;
 }
 
 * {
