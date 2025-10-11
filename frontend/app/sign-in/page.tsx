@@ -12,9 +12,9 @@ const noticeBlock = [
 ].join("\n");
 
 const heroStats = [
-    { label: "MODE", value: "BETA INVITE", accent: "text-accent-purple" },
-    { label: "SLOTS", value: "12 REMAIN", accent: "text-accent-blue" },
-    { label: "SYNC", value: "UNDER 2S", accent: "text-accent-orange" },
+    { label: "MODE", value: "BETA INVITE", accent: "text-tertiary" },
+    { label: "SLOTS", value: "12 REMAIN", accent: "text-secondary" },
+    { label: "SYNC", value: "UNDER 2S", accent: "text-primary" },
 ];
 
 const requestHighlights = [
@@ -87,26 +87,26 @@ export default function SignInPage() {
     };
 
     return (
-        <main className="relative isolate min-h-dvh overflow-hidden bg-navy text-slate-200">
+        <main className="relative isolate min-h-dvh overflow-hidden bg-background text-slate-200">
             <div className="absolute inset-0 -z-10" aria-hidden="true">
-                <div className="absolute inset-0 bg-navy" />
-                <div className="absolute -top-36 right-1/3 h-[420px] w-[420px] bg-accent-purple/20 blur-3xl" />
-                <div className="absolute bottom-[-120px] left-[18%] h-80 w-80 bg-accent-blue/20 blur-3xl" />
-                <div className="absolute bottom-10 right-[-12%] h-72 w-72 bg-accent-orange/15 blur-3xl" />
-                <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-accent-purple/40 to-transparent opacity-40" />
+                <div className="absolute inset-0 bg-background" />
+                <div className="absolute -top-36 right-1/3 h-[420px] w-[420px] bg-tertiary/20 blur-3xl" />
+                <div className="absolute bottom-[-120px] left-[18%] h-80 w-80 bg-secondary/20 blur-3xl" />
+                <div className="absolute bottom-10 right-[-12%] h-72 w-72 bg-primary/15 blur-3xl" />
+                <div className="absolute inset-x-0 top-1/2 h-px bg-gradient-to-r from-transparent via-tertiary/40 to-transparent opacity-40" />
             </div>
 
             <div className="mx-auto flex min-h-dvh w-full max-w-5xl flex-col justify-center px-6 py-12 sm:px-8">
                 <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
                     <section className="space-y-8 text-center lg:text-left">
                         <div className="space-y-5">
-                            <span className="inline-flex items-center gap-2 border-4 border-accent-purple bg-navy px-5 py-2 font-mono text-xs uppercase tracking-[0.45em] text-accent-purple shadow-brutal-blue">
+                            <span className="inline-flex items-center gap-2 border-4 border-tertiary bg-background px-5 py-2 font-mono text-xs uppercase tracking-[0.45em] text-tertiary shadow-brutal-secondary">
                                 [SIGNUP::ACCESS_REQUEST]
                             </span>
                             <h1 className="font-mono font-black uppercase text-white sm:text-5xl">
                                 Request Crew Credentials
                             </h1>
-                            <p className="mx-auto max-w-xl border-l-4 border-accent-purple bg-navy/60 pl-4 font-mono text-xs uppercase tracking-[0.3em] text-slate-400 lg:mx-0 lg:text-sm">
+                            <p className="mx-auto max-w-xl border-l-4 border-tertiary bg-background/60 pl-4 font-mono text-xs uppercase tracking-[0.3em] text-slate-400 lg:mx-0 lg:text-sm">
                                 REGISTER YOUR CALLSIGN AND PASSCODE. OPS WILL
                                 SYNC YOUR ACCESS INSTANTLY.
                             </p>
@@ -116,7 +116,7 @@ export default function SignInPage() {
                             {heroStats.map((item) => (
                                 <div
                                     key={item.label}
-                                    className="border-4 border-border-slate bg-navy-dark px-4 py-3 font-mono text-xs uppercase text-slate-400 shadow-brutal-slate-sm"
+                                    className="border-4 border-border bg-background-dark px-4 py-3 font-mono text-xs uppercase text-slate-400 shadow-brutal-muted-sm"
                                 >
                                     <span
                                         className={item.accent}
@@ -132,9 +132,9 @@ export default function SignInPage() {
                             {requestHighlights.map((item) => (
                                 <div
                                     key={item.tag}
-                                    className="border-4 border-border-slate bg-navy/80 px-4 py-3 font-mono text-[0.65rem] uppercase leading-snug text-slate-300 shadow-brutal-slate-sm sm:text-xs"
+                                    className="border-4 border-border bg-background/80 px-4 py-3 font-mono text-[0.65rem] uppercase leading-snug text-slate-300 shadow-brutal-muted-sm sm:text-xs"
                                 >
-                                    <div className="text-accent-purple">
+                                    <div className="text-tertiary">
                                         {item.tag}
                                     </div>
                                     <p className="mt-1 text-slate-400">
@@ -144,23 +144,23 @@ export default function SignInPage() {
                             ))}
                         </div>
 
-                        <Card className="border-accent-purple/40 bg-navy/75 shadow-brutal-blue lg:hidden">
-                            <span className="font-mono text-xs uppercase text-accent-purple">
+                        <Card className="border-tertiary/40 bg-background/75 shadow-brutal-secondary lg:hidden">
+                            <span className="font-mono text-xs uppercase text-tertiary">
                                 [INVITE_WINDOW]
                             </span>
                         </Card>
                     </section>
 
-                    <Card className="border-accent-purple bg-navy-dark/85 shadow-brutal-blue-lg">
+                    <Card className="border-tertiary bg-background-dark/85 shadow-brutal-secondary-lg">
                         <div className="flex flex-col gap-6 font-mono text-xs uppercase">
-                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border-slate bg-navy px-5 py-3 text-accent-purple shadow-brutal-slate-sm">
+                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border bg-background px-5 py-3 text-tertiary shadow-brutal-muted-sm">
                                 <span>[REGISTRATION_CONSOLE]</span>
                                 <span className="text-slate-400">
                                     SECURE CHANNEL READY
                                 </span>
                             </div>
 
-                            <pre className="overflow-hidden border-4 border-border-slate bg-navy-dark p-5 text-sm leading-6 text-accent-purple shadow-brutal-slate">
+                            <pre className="overflow-hidden border-4 border-border bg-background-dark p-5 text-sm leading-6 text-tertiary shadow-brutal-muted">
                                 {noticeBlock}
                             </pre>
 
@@ -169,7 +169,7 @@ export default function SignInPage() {
                                 className="grid gap-5 text-sm"
                             >
                                 {error && (
-                                    <div className="border-4 border-rose-500 bg-rose-500/10 px-4 py-3 font-mono text-xs uppercase text-rose-400 shadow-brutal-slate-sm">
+                                    <div className="border-4 border-rose-500 bg-rose-500/10 px-4 py-3 font-mono text-xs uppercase text-rose-400 shadow-brutal-muted-sm">
                                         <span className="font-black">
                                             [ERROR]{" "}
                                         </span>
@@ -185,7 +185,7 @@ export default function SignInPage() {
                                         value={email}
                                         onChange={handleChangeEmail}
                                         placeholder="ops contact"
-                                        className="border-4 border-border-slate bg-navy px-4 py-3 text-base uppercase text-accent-purple shadow-brutal-slate-sm transition-all placeholder:text-slate-600 focus:border-accent-purple focus:text-accent-purple focus:outline-none focus:shadow-brutal-blue-sm"
+                                        className="border-4 border-border bg-background px-4 py-3 text-base uppercase text-tertiary shadow-brutal-muted-sm transition-all placeholder:text-slate-600 focus:border-tertiary focus:text-tertiary focus:outline-none focus:shadow-brutal-secondary-sm"
                                     />
                                 </label>
                                 <label className="grid gap-2 text-xs tracking-[0.3em] text-slate-400">
@@ -196,14 +196,14 @@ export default function SignInPage() {
                                         value={password}
                                         onChange={handleChangePassword}
                                         placeholder="set passphrase"
-                                        className="border-4 border-border-slate bg-navy px-4 py-3 text-base uppercase text-accent-purple shadow-brutal-slate-sm transition-all placeholder:text-slate-600 focus:border-accent-purple focus:text-accent-purple focus:outline-none focus:shadow-brutal-blue-sm"
+                                        className="border-4 border-border bg-background px-4 py-3 text-base uppercase text-tertiary shadow-brutal-muted-sm transition-all placeholder:text-slate-600 focus:border-tertiary focus:text-tertiary focus:outline-none focus:shadow-brutal-secondary-sm"
                                         required
                                     />
                                 </label>
                                 <button
                                     type="submit"
                                     disabled={loading}
-                                    className="inline-flex items-center justify-center gap-3 border-4 border-navy bg-accent-blue px-6 py-3 font-black uppercase tracking-[0.35em] text-navy shadow-brutal-blue transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-blue-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                                    className="inline-flex items-center justify-center gap-3 border-4 border-background bg-secondary px-6 py-3 font-black uppercase tracking-[0.35em] text-background shadow-brutal-secondary transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-brutal-secondary-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                                 >
                                     {loading
                                         ? "Processing..."
@@ -214,7 +214,7 @@ export default function SignInPage() {
                                 </button>
                             </form>
 
-                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border-slate bg-navy px-4 py-3 shadow-brutal-slate-sm">
+                            <div className="flex flex-wrap items-center justify-between gap-3 border-4 border-border bg-background px-4 py-3 shadow-brutal-muted-sm">
                                 {approvalSteps.map((step) => (
                                     <div
                                         key={step.label}
@@ -232,7 +232,7 @@ export default function SignInPage() {
 
                             <Link
                                 href="/login"
-                                className="inline-flex w-max items-center gap-2 border-4 border-border-slate bg-navy px-4 py-2 font-black text-accent-purple shadow-brutal-slate-sm transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:text-accent-orange"
+                                className="inline-flex w-max items-center gap-2 border-4 border-border bg-background px-4 py-2 font-black text-tertiary shadow-brutal-muted-sm transition-transform duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:text-primary"
                             >
                                 Back to Login Portal
                             </Link>
