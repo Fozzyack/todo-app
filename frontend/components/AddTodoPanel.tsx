@@ -1,9 +1,22 @@
 "use client";
 import Card from "@/components/Card";
 import { getBackendUrl } from "@/lib/BackendURL";
+import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 
-const AddTodoPanel = () => {
+type AddTodoPanelProps = {
+    className?: string;
+    showOnMobile?: boolean;
+};
+
+const baseClasses =
+    "md:col-span-5 md:order-last flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10";
+const hiddenMobileClasses = "hidden md:flex";
+
+const AddTodoPanel = ({
+    className = "",
+    showOnMobile = false,
+}: AddTodoPanelProps) => {
     const [loading, setLoading] = useState(false);
     const [formDetails, setFormDetails] = useState({
         name: "",
@@ -12,9 +25,7 @@ const AddTodoPanel = () => {
     });
 
     const handleFormChange = (
-        e:
-            | React.ChangeEvent<HTMLInputElement>
-            | React.ChangeEvent<HTMLTextAreaElement>,
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     ) => {
         setFormDetails((prev) => ({
             ...prev,
@@ -22,7 +33,7 @@ const AddTodoPanel = () => {
         }));
     };
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
             setLoading(true);
@@ -50,9 +61,18 @@ const AddTodoPanel = () => {
         setLoading(false);
     };
 
+    const combinedClasses = [
+        baseClasses,
+        showOnMobile ? "" : hiddenMobileClasses,
+        className,
+    ]
+        .filter(Boolean)
+        .join(" ")
+        .trim();
+
     if (loading) {
         return (
-            <Card className="md:col-span-5 md:order-last flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
+            <Card className={combinedClasses}>
                 <div className="flex flex-col items-center justify-center">
                     <svg
                         aria-hidden="true"
@@ -77,7 +97,7 @@ const AddTodoPanel = () => {
     }
 
     return (
-        <Card className="hidden md:col-span-5 md:order-last md:flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
+        <Card className={combinedClasses}>
             <div className="space-y-7">
                 <div className="space-y-3">
                     <div className="flex items-center gap-3">
