@@ -20,6 +20,11 @@ const DashboardPage = () => {
                     </div>
                     <LogoutButton />
                 </Card>
+                <Card className="flex flex-col gap-6 border-accent-blue bg-navy-dark/80 shadow-brutal-blue-lg sm:flex-row sm:items-center sm:justify-between mt-10">
+                    <div>
+                        <h2>Current Todos</h2>
+                    </div>
+                </Card>
             </div>
         </main>
     );
