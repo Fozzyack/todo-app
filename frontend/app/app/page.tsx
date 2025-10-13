@@ -2,6 +2,7 @@ import Card from "@/components/Card";
 import AddTodoPanel from "@/components/AddTodoPanel";
 import LogoutButton from "@/components/LogoutButton";
 import MobileAddTodoTrigger from "@/components/MobileAddTodoTrigger";
+import TodoManager from "@/components/TodoManager";
 
 const DashboardPage = () => {
     return (
@@ -29,12 +30,7 @@ const DashboardPage = () => {
                     <MobileAddTodoTrigger />
                 </div>
                 <div className="grid md:grid-cols-12 gap-4">
-                    <AddTodoPanel />
-                    <Card className="flex md:col-span-7 flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:justify-between mt-10">
-                        <div>
-                            <h2>Todos</h2>
-                        </div>
-                    </Card>
+                    <TodoManager />
                 </div>
             </div>
         </main>

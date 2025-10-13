@@ -23,7 +23,22 @@ public class TodosController : BaseController
         {
             return Unauthorized();
         }
-        var todos = await _context.Todos.Where(t => t.UserId == userId).ToListAsync();
+        var userTodos = await _context.Todos.Where(t => t.UserId == userId).ToListAsync();
+        var todos = new List<GetTodoRequest>();
+        foreach (var todo in userTodos)
+        {
+            todos.Add(
+                new GetTodoRequest
+                {
+                    Id = todo.Id,
+                    Name = todo.Name,
+                    Description = todo.Description,
+                    DueDate = todo.DueDate,
+                    Completed = todo.Completed,
+                }
+            );
+        }
+
         return Ok(todos);
     }
 
@@ -49,8 +64,10 @@ public class TodosController : BaseController
 
         return Created($"api/todos/{todo.Id}", todo);
     }
+
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteTodo(string id) {
+    public async Task<IActionResult> DeleteTodo(string id)
+    {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId == null)
         {
@@ -58,7 +75,8 @@ public class TodosController : BaseController
         }
 
         var todoToDelete = await _context.Todos.FindAsync(new Guid(id));
-        if (todoToDelete == null) {
+        if (todoToDelete == null)
+        {
             return NotFound();
         }
         _context.Todos.Remove(todoToDelete);

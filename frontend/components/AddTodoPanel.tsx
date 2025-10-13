@@ -7,6 +7,7 @@ import { useState } from "react";
 type AddTodoPanelProps = {
     className?: string;
     showOnMobile?: boolean;
+    handleRefresh?: () => void;
 };
 
 const baseClasses =
@@ -16,6 +17,7 @@ const hiddenMobileClasses = "hidden md:flex";
 const AddTodoPanel = ({
     className = "",
     showOnMobile = false,
+    handleRefresh = () => {},
 }: AddTodoPanelProps) => {
     const [loading, setLoading] = useState(false);
     const [formDetails, setFormDetails] = useState({
@@ -55,6 +57,7 @@ const AddTodoPanel = ({
             }
             const data = await res.json();
             console.log(data);
+            handleRefresh();
         } catch (error) {
             console.log(error);
         }
@@ -97,80 +100,82 @@ const AddTodoPanel = ({
     }
 
     return (
-        <Card className={combinedClasses}>
-            <div className="space-y-7">
-                <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                        <span className="h-3 w-12 bg-primary shadow-brutal-primary" />
-                        <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
-                            Create
+        <div className="md:col-span-5 md:order-last">
+            <Card className={combinedClasses}>
+                <div className="space-y-7">
+                    <div className="space-y-3">
+                        <div className="flex items-center gap-3">
+                            <span className="h-3 w-12 bg-primary shadow-brutal-primary" />
+                            <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
+                                Create
+                            </p>
+                        </div>
+                        <h3 className="text-2xl font-semibold text-white">
+                            Add Todo
+                        </h3>
+                        <p className="text-sm text-slate-400">
+                            Capture the task details below so you can keep tabs
+                            on what is next.
                         </p>
                     </div>
-                    <h3 className="text-2xl font-semibold text-white">
-                        Add Todo
-                    </h3>
-                    <p className="text-sm text-slate-400">
-                        Capture the task details below so you can keep tabs on
-                        what is next.
-                    </p>
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        <div className="space-y-3">
+                            <label
+                                className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
+                                htmlFor="todo-name"
+                            >
+                                Name
+                            </label>
+                            <input
+                                className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
+                                id="todo-name"
+                                name="name"
+                                placeholder="e.g. Draft release notes"
+                                onChange={handleFormChange}
+                                type="text"
+                            />
+                        </div>
+                        <div className="space-y-3">
+                            <label
+                                className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
+                                htmlFor="todo-description"
+                            >
+                                Description
+                            </label>
+                            <textarea
+                                className="h-32 w-full resize-none border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
+                                id="todo-description"
+                                name="description"
+                                onChange={handleFormChange}
+                                placeholder="Give a quick overview so future you knows what to do."
+                            />
+                        </div>
+                        <div className="space-y-3">
+                            <label
+                                className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
+                                htmlFor="todo-due"
+                            >
+                                Due
+                            </label>
+                            <input
+                                className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
+                                id="todo-due"
+                                onChange={handleFormChange}
+                                name="date"
+                                placeholder="Choose a date"
+                                type="date"
+                            />
+                        </div>
+                        <button
+                            className="inline-flex w-full items-center justify-center gap-2 border-4 border-primary bg-primary px-5 py-3 text-sm font-black uppercase tracking-[0.3em] text-background-dark shadow-brutal-primary transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:bg-primary/90 focus:-translate-y-1 focus:-translate-x-1 focus:outline-none"
+                            type="submit"
+                        >
+                            Add Todo
+                        </button>
+                    </form>
                 </div>
-                <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="space-y-3">
-                        <label
-                            className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
-                            htmlFor="todo-name"
-                        >
-                            Name
-                        </label>
-                        <input
-                            className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
-                            id="todo-name"
-                            name="name"
-                            placeholder="e.g. Draft release notes"
-                            onChange={handleFormChange}
-                            type="text"
-                        />
-                    </div>
-                    <div className="space-y-3">
-                        <label
-                            className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
-                            htmlFor="todo-description"
-                        >
-                            Description
-                        </label>
-                        <textarea
-                            className="h-32 w-full resize-none border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
-                            id="todo-description"
-                            name="description"
-                            onChange={handleFormChange}
-                            placeholder="Give a quick overview so future you knows what to do."
-                        />
-                    </div>
-                    <div className="space-y-3">
-                        <label
-                            className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
-                            htmlFor="todo-due"
-                        >
-                            Due
-                        </label>
-                        <input
-                            className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
-                            id="todo-due"
-                            onChange={handleFormChange}
-                            name="date"
-                            placeholder="Choose a date"
-                            type="date"
-                        />
-                    </div>
-                    <button
-                        className="inline-flex w-full items-center justify-center gap-2 border-4 border-primary bg-primary px-5 py-3 text-sm font-black uppercase tracking-[0.3em] text-background-dark shadow-brutal-primary transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:bg-primary/90 focus:-translate-y-1 focus:-translate-x-1 focus:outline-none"
-                        type="submit"
-                    >
-                        Add Todo
-                    </button>
-                </form>
-            </div>
-        </Card>
+            </Card>
+        </div>
     );
 };
 
