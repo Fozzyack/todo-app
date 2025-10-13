@@ -3,7 +3,7 @@
 import { getBackendUrl } from "@/lib/BackendURL";
 import { useEffect, useState } from "react";
 import Card from "./Card";
-import TodoItem from "./TodoItem";
+import CompletedTodoItem from "./CompletedTodoItem";
 import { useRefreshTokenContext } from "@/lib/RefreshTokenContext";
 
 const CompletedSection = () => {
@@ -82,10 +82,9 @@ const CompletedSection = () => {
                     </div>
                 ) : (
                     currentTodos.map((todo) => (
-                        <TodoItem
+                        <CompletedTodoItem
                             key={todo.id}
                             todo={todo}
-                            onFinishRequest={fetchTodos}
                         />
                     ))
                 )}

@@ -26,6 +26,20 @@
     --shadow-brutal-primary: 4px 4px 0 0 #c2410c;
     --shadow-brutal-primary-lg: 8px 8px 0 0 #c2410c;
     --shadow-brutal-secondary-sm: 6px 6px 0 0 #1e3a8a;
+    --shadow-brutal-tertiary-lg: 8px 8px 0 0 #7c3aed;
+
+    --animate-slide-in: slide-in 0.3s ease-out;
+}
+
+@keyframes slide-in {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 * {

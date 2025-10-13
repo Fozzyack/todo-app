@@ -39,6 +39,12 @@ const TodoList = () => {
     );
     return (
         <Card className="sm:flex md:block md:col-span-7 md:order-first flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg">
+            <div className="flex items-center justify-startr gap-4 mb-4">
+                <div className="h-3 w-12 bg-primary shadow-brutal-primary" />
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">
+                    Todos
+                </p>
+            </div>
             <div className="flex items-center gap-4 justify-between">
                 <h3 className="font-mono text-secondary uppercase tracking-[0.3em] mb-0">
                     [TASKS::ACTIVE]
@@ -57,11 +63,7 @@ const TodoList = () => {
                     </div>
                 ) : (
                     currentTodos.map((todo) => (
-                        <TodoItem
-                            key={todo.id}
-                            todo={todo}
-                            onFinishRequest={fetchTodos}
-                        />
+                        <TodoItem key={todo.id} todo={todo} />
                     ))
                 )}
             </div>

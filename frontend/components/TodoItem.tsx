@@ -4,6 +4,9 @@ import { getBackendUrl } from "@/lib/BackendURL";
 import { useState } from "react";
 import Card from "./Card";
 import { useRefreshTokenContext } from "@/lib/RefreshTokenContext";
+import { useToastContext } from "@/lib/ToastContext";
+import { playSuccessSound } from "@/lib/playSuccessSound";
+import { playCancelSound } from "@/lib/playCancelSound";
 
 type TodoItemProps = {
     todo: Todo;
@@ -12,6 +15,7 @@ type TodoItemProps = {
 const TodoItem = ({ todo }: TodoItemProps) => {
     const [loading, setLoading] = useState(false);
     const { handleRefresh } = useRefreshTokenContext();
+    const { showToast } = useToastContext();
 
     const handleComplete = async () => {
         try {
@@ -25,10 +29,12 @@ const TodoItem = ({ todo }: TodoItemProps) => {
                     body: JSON.stringify({ completed: true }),
                 }
             );
-            handleRefresh();
             if (!res.ok) {
                 throw new Error(`Failed to complete todo: ${res.status}`);
             }
+            playSuccessSound();
+            showToast("[TASK_COMPLETED]");
+            handleRefresh();
         } catch (error) {
             console.error(error);
         } finally {
@@ -51,6 +57,8 @@ const TodoItem = ({ todo }: TodoItemProps) => {
             if (!res.ok) {
                 throw new Error(`Failed to cancel todo: ${res.status}`);
             }
+            playCancelSound();
+            showToast("[TASK_CANCELLED]");
             handleRefresh();
         } catch (error) {
             console.error(error);

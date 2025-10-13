@@ -23,7 +23,7 @@ const AddTodoPanel = ({
     const [formDetails, setFormDetails] = useState({
         name: "",
         description: "",
-        date: "",
+        date: new Date().toISOString().split("T")[0],
     });
 
     const { handleRefresh } = useRefreshTokenContext();
@@ -130,10 +130,11 @@ const AddTodoPanel = ({
                             </label>
                             <input
                                 className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
-                                id="todo-name"
-                                name="name"
-                                placeholder="e.g. Draft release notes"
+                                id="todo-due"
                                 onChange={handleFormChange}
+                                name="name"
+                                value={formDetails.name}
+                                placeholder="Name of the Todo"
                                 type="text"
                             />
                         </div>
@@ -164,6 +165,7 @@ const AddTodoPanel = ({
                                 id="todo-due"
                                 onChange={handleFormChange}
                                 name="date"
+                                value={formDetails.date}
                                 placeholder="Choose a date"
                                 type="date"
                             />
