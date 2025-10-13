@@ -35,7 +35,7 @@ const TodoList = ({ refreshToken }: { refreshToken: number }) => {
             </div>
             <hr className="my-4 mborder-t-2 border-border-dark" />
             <div className="flex flex-col gap-4">
-                {todos.length === 0 ? (
+                {uncompletedTodos.length === 0 ? (
                     <div className="text-center py-12 text-border font-mono">
                         <p className="text-sm uppercase tracking-[0.2em]">
                             [NO_TASKS_FOUND]
