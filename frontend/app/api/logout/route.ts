@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 const POST = async () => {
-    const cookieStore = cookies();
+    const cookieStore = await cookies();
     const identityCookie = cookieStore.get(".AspNetCore.Identity.Application");
 
     if (!identityCookie) {
