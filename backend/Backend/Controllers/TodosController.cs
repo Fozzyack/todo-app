@@ -23,7 +23,10 @@ public class TodosController : BaseController
         {
             return Unauthorized();
         }
-        var userTodos = await _context.Todos.Where(t => t.UserId == userId).ToListAsync();
+        var userTodos = await _context
+            .Todos.Where(t => t.UserId == userId)
+            .OrderBy(t => t.DueDate)
+            .ToListAsync();
         var todos = new List<GetTodoRequest>();
         foreach (var todo in userTodos)
         {
@@ -66,7 +69,10 @@ public class TodosController : BaseController
     }
 
     [HttpPatch("{id}")]
-    public async Task<IActionResult> UpdateTodoCompletion(string id, [FromBody] UpdateTodoCompletionRequest request)
+    public async Task<IActionResult> UpdateTodoCompletion(
+        string id,
+        [FromBody] UpdateTodoCompletionRequest request
+    )
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         if (userId == null)
