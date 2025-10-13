@@ -31,13 +31,13 @@ const TodoList = ({ refreshToken }: { refreshToken: number }) => {
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
     const currentTodos = uncompletedTodos.slice(indexOfFirstTodo, indexOfLastTodo);
     return (
-        <Card className="sm:flex md:block md:col-span-7 md:order-first flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10">
+        <Card className="sm:flex md:block md:col-span-7 md:order-first flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg">
             <div className="flex items-center gap-4 justify-between">
                 <h3 className="font-mono text-secondary uppercase tracking-[0.3em] mb-0">
                     [TASKS::ACTIVE]
                 </h3>
                 <span className="font-mono text-xs text-border px-3 py-1 border-2 border-border">
-                    {todos.length}
+                    {currentTodos.length}
                 </span>
             </div>
             <hr className="my-4 mborder-t-2 border-border-dark" />

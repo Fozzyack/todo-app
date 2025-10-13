@@ -11,7 +11,7 @@ type AddTodoPanelProps = {
 };
 
 const baseClasses =
-    "md:col-span-5 md:order-last flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg mt-10";
+    "flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg";
 const hiddenMobileClasses = "hidden md:flex";
 
 const AddTodoPanel = ({

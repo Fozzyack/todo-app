@@ -29,7 +29,7 @@ const DashboardPage = () => {
                 <div className="mt-8 md:hidden">
                     <MobileAddTodoTrigger />
                 </div>
-                <div className="grid md:grid-cols-12 gap-4">
+                <div className="grid md:grid-cols-12 gap-4 mt-10">
                     <TodoManager />
                 </div>
             </div>

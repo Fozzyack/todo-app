@@ -1,9 +1,8 @@
 "use client";
 
-import { Fragment, useEffect, useState } from "react";
+import { useState } from "react";
 import AddTodoPanel from "./AddTodoPanel";
 import TodoList from "./TodoList";
-import { getBackendUrl } from "@/lib/BackendURL";
 
 
 const TodoManager = () => {
