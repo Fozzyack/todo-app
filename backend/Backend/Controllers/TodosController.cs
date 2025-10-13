@@ -69,7 +69,7 @@ public class TodosController : BaseController
         return Created($"api/todos/{todo.Id}", todo);
     }
 
-    [HttpPatch("{id}")]
+    [HttpPatch("complete/{id}")]
     public async Task<IActionResult> UpdateTodoCompletion(
         string id,
         [FromBody] UpdateTodoCompletionRequest request
@@ -93,6 +93,34 @@ public class TodosController : BaseController
         }
 
         todo.Completed = request.Completed;
+        todo.UpdatedAt = DateTime.UtcNow;
+        await _context.SaveChangesAsync();
+
+        return Ok(todo);
+    }
+
+    [HttpPatch("cancel/{id}")]
+    public async Task<IActionResult> UpdateTodoCancellation(
+        string id,
+        [FromBody] UpdateTodoCancelationRequest request
+    )
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (userId == null)
+        {
+            return Unauthorized();
+        }
+        var todo = await _context.Todos.FindAsync(new Guid(id));
+        if (todo == null)
+        {
+            return NotFound();
+        }
+        if (userId != todo.UserId)
+        {
+            return Forbid();
+        }
+
+        todo.Cancelled = request.Cancelled;
         todo.UpdatedAt = DateTime.UtcNow;
         await _context.SaveChangesAsync();
 

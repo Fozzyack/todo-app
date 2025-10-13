@@ -25,7 +25,7 @@ const TodoList = ({ refreshToken }: { refreshToken: number }) => {
         setCurrentPage(1);
     }, [refreshToken]);
 
-    const uncompletedTodos = todos.filter((todo) => !todo.completed);
+    const uncompletedTodos = todos.filter((todo) => !todo.completed && !todo.cancelled);
     const totalPages = Math.ceil(uncompletedTodos.length / todosPerPage);
     const indexOfLastTodo = currentPage * todosPerPage;
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
@@ -53,7 +53,7 @@ const TodoList = ({ refreshToken }: { refreshToken: number }) => {
                         <TodoItem
                             key={todo.id}
                             todo={todo}
-                            onComplete={fetchTodos}
+                            onFinishRequest={fetchTodos}
                         />
                     ))
                 )}
