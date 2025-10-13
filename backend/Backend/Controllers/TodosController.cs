@@ -37,6 +37,7 @@ public class TodosController : BaseController
                     Name = todo.Name,
                     Description = todo.Description,
                     DueDate = todo.DueDate,
+                    Cancelled = todo.Cancelled,
                     Completed = todo.Completed,
                 }
             );

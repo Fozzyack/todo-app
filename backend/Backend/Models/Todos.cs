@@ -15,6 +15,8 @@ public class Todo
 
     public bool Completed { get; set; } = false;
 
+    public bool Cancelled { get; set; } = false;
+
     [ForeignKey(nameof(User))]
     [Required(AllowEmptyStrings = false)]
     public string? UserId { get; set; }
