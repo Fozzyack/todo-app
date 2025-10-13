@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.WithOrigins("http://localhost:3000").WithHeaders("Content-Type").AllowCredentials();
+        policy.WithOrigins("http://localhost:3000").WithMethods("PATCH").WithHeaders("Content-Type").AllowCredentials();
     });
 });
 

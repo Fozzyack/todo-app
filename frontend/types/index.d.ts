@@ -3,6 +3,6 @@ type Todo = {
     name: string;
     description: string;
     dueDate: string;
-    isCompleted: boolean;
+    completed: boolean;
 
 }
