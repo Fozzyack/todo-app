@@ -1,5 +1,4 @@
 import Card from "@/components/Card";
-import AddTodoPanel from "@/components/AddTodoPanel";
 import LogoutButton from "@/components/LogoutButton";
 import MobileAddTodoTrigger from "@/components/MobileAddTodoTrigger";
 import TodoManager from "@/components/TodoManager";

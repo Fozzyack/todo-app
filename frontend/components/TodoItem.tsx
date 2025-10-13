@@ -6,16 +6,16 @@ import Card from "./Card";
 
 type TodoItemProps = {
     todo: Todo;
-    onComplete: () => void;
+    onFinishRequest: () => void;
 };
 
-const TodoItem = ({ todo, onComplete }: TodoItemProps) => {
+const TodoItem = ({ todo, onFinishRequest}: TodoItemProps) => {
     const [loading, setLoading] = useState(false);
 
     const handleComplete = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`${getBackendUrl()}/Todos/${todo.id}`, {
+            const res = await fetch(`${getBackendUrl()}/Todos/complete/${todo.id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
@@ -24,7 +24,27 @@ const TodoItem = ({ todo, onComplete }: TodoItemProps) => {
             if (!res.ok) {
                 throw new Error(`Failed to complete todo: ${res.status}`);
             }
-            onComplete();
+            onFinishRequest();
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleCancel= async () => {
+        try {
+            setLoading(true);
+            const res = await fetch(`${getBackendUrl()}/Todos/cancel/${todo.id}`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ cancelled: true }),
+            });
+            if (!res.ok) {
+                throw new Error(`Failed to cancel todo: ${res.status}`);
+            }
+            onFinishRequest();
         } catch (error) {
             console.error(error);
         } finally {
@@ -54,6 +74,7 @@ const TodoItem = ({ todo, onComplete }: TodoItemProps) => {
                     })}
                 </p>
             </div>
+            <div className="flex flex-col items-center justify-end gap-2">
             <button
                 type="button"
                 onClick={handleComplete}
@@ -62,6 +83,15 @@ const TodoItem = ({ todo, onComplete }: TodoItemProps) => {
             >
                 {loading ? "[...]" : "[DONE]"}
             </button>
+            <button
+                type="button"
+                onClick={handleCancel}
+                disabled={loading}
+                className="font-mono text-[0.6em] font-bold uppercase tracking-[0.2em] text-red-500  hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+            >
+                {loading ? "" : "[CANCEL]"}
+            </button>
+            </div>
         </Card>
     );
 };

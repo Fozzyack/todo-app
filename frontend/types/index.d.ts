@@ -4,5 +4,6 @@ type Todo = {
     description: string;
     dueDate: string;
     completed: boolean;
+    cancelled: boolean;
 
 }

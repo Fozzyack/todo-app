@@ -1,7 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
-using Backend.Models;
 
 namespace Backend.Requests;
 
@@ -14,7 +11,9 @@ public class GetTodoRequest
 
     public string? Description { get; set; }
 
-    public bool Completed { get; set; } = false;
+    public bool Completed { get; set; }
+    
+    public bool Cancelled { get; set; }
 
     public DateTime DueDate { get; set; }
 }
