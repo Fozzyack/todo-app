@@ -9,6 +9,7 @@ type AddTodoPanelProps = {
     className?: string;
     showOnMobile?: boolean;
     handleRefresh?: () => void;
+    handleClose?: () => void;
 };
 
 const baseClasses =
@@ -18,6 +19,7 @@ const hiddenMobileClasses = "hidden md:flex";
 const AddTodoPanel = ({
     className = "",
     showOnMobile = false,
+    handleClose = () => {},
 }: AddTodoPanelProps) => {
     const [loading, setLoading] = useState(false);
     const [formDetails, setFormDetails] = useState({
@@ -60,6 +62,7 @@ const AddTodoPanel = ({
             const data = await res.json();
             console.log(data);
             handleRefresh();
+            handleClose();
         } catch (error) {
             console.log(error);
         }
@@ -102,7 +105,7 @@ const AddTodoPanel = ({
     }
 
     return (
-        <div className="md:col-span-5">
+        <div className="col-span-1 md:col-span-5">
             <Card className={combinedClasses}>
                 <div className="space-y-7">
                     <div className="space-y-3">

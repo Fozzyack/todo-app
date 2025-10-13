@@ -28,7 +28,11 @@ const MobileAddTodoTrigger = () => {
                         className="relative w-full max-w-xl"
                         onClick={(event) => event.stopPropagation()}
                     >
-                        <AddTodoPanel className="mt-0" showOnMobile />
+                        <AddTodoPanel
+                            className="mt-0"
+                            showOnMobile
+                            handleClose={handleClose}
+                        />
                         <button
                             aria-label="Close add todo form"
                             className="absolute -top-4 -right-0 border-4 border-secondary bg-background px-3 py-2 font-mono text-xs uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 focus:-translate-y-1 focus:-translate-x-1 focus:outline-none"

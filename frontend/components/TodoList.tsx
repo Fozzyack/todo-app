@@ -38,7 +38,7 @@ const TodoList = () => {
         indexOfLastTodo
     );
     return (
-        <Card className="sm:flex md:block md:col-span-7 md:order-first flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg">
+        <Card className="col-span-1 md:col-span-7 md:order-first flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg">
             <div className="flex items-center justify-startr gap-4 mb-4">
                 <div className="h-3 w-12 bg-primary shadow-brutal-primary" />
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-primary">

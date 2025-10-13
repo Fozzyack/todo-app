@@ -1,12 +1,16 @@
 import Card from "@/components/Card";
 import LogoutButton from "@/components/LogoutButton";
-import MobileAddTodoTrigger from "@/components/MobileAddTodoTrigger";
 import TodoManager from "@/components/TodoManager";
 
 const DashboardPage = () => {
     return (
-        <main className="min-h-screen bg-background text-slate-100">
-            <div className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-8">
+        <main className="dashboard-background relative min-h-screen overflow-hidden text-slate-100">
+            <div className="pointer-events-none absolute inset-x-0 -top-32 flex justify-center opacity-70">
+                <div className="h-64 w-[42rem] rounded-full bg-secondary/30 blur-[140px]" />
+            </div>
+            <div className="pointer-events-none absolute -bottom-16 -left-20 hidden h-72 w-72 rounded-full bg-primary/20 blur-[120px] sm:block" />
+            <div className="pointer-events-none absolute -bottom-24 right-12 h-80 w-80 rounded-full bg-tertiary/20 blur-[140px]" />
+            <div className="mx-auto w-full max-w-5xl px-6 py-24 sm:px-8 relative z-10">
                 <Card className="flex flex-col gap-6 border-secondary bg-background-dark/80 shadow-brutal-secondary-lg sm:flex-row sm:items-center sm:justify-between">
                     <div className="space-y-2">
                         <div className="flex items-center gap-4">
@@ -25,10 +29,7 @@ const DashboardPage = () => {
                     </div>
                     <LogoutButton />
                 </Card>
-                <div className="mt-8 md:hidden">
-                    <MobileAddTodoTrigger />
-                </div>
-                <div className="grid md:grid-cols-12 gap-4 mt-10">
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mt-10">
                     <TodoManager />
                 </div>
             </div>

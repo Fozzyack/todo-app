@@ -44,12 +44,12 @@ const CompletedSection = () => {
     const currentTodos = filteredTodos.slice(indexOfFirstTodo, indexOfLastTodo);
 
     return (
-        <Card className="md:col-span-12 flex flex-col gap-7 border-tertiary bg-background-dark/85 shadow-brutal-tertiary-lg">
+        <Card className="col-span-1 md:col-span-12 flex flex-col gap-7 border-tertiary bg-background-dark/85 shadow-brutal-tertiary-lg">
             <div className="flex items-center gap-4 border-b-4 border-border-dark pb-4">
                 <button
                     type="button"
                     onClick={() => setActiveTab("completed")}
-                    className={`font-mono text-sm uppercase tracking-[0.3em] px-6 py-3 border-4 transition-all duration-200 ${
+                    className={`font-mono text-xs md:text-sm uppercase tracking-[0.3em] px-3 md:px-6 py-3 border-4 transition-all duration-200 ${
                         activeTab === "completed"
                             ? "border-tertiary bg-tertiary/20 text-tertiary shadow-brutal-muted-sm -translate-x-1 -translate-y-1"
                             : "border-border bg-background text-border hover:-translate-x-1 hover:-translate-y-1"
@@ -60,7 +60,7 @@ const CompletedSection = () => {
                 <button
                     type="button"
                     onClick={() => setActiveTab("cancelled")}
-                    className={`font-mono text-sm uppercase tracking-[0.3em] px-6 py-3 border-4 transition-all duration-200 ${
+                    className={`font-mono text-xs md:text-sm uppercase tracking-[0.3em] px-3 md:px-6 py-3 border-4 transition-all duration-200 ${
                         activeTab === "cancelled"
                             ? "border-tertiary bg-tertiary/20 text-tertiary shadow-brutal-muted-sm -translate-x-1 -translate-y-1"
                             : "border-border bg-background text-border hover:-translate-x-1 hover:-translate-y-1"
@@ -68,7 +68,7 @@ const CompletedSection = () => {
                 >
                     [CANCELLED]
                 </button>
-                <span className="ml-auto font-mono text-xs text-border px-3 py-1 border-2 border-border">
+                <span className="hidden md:block ml-auto font-mono text-xs text-border px-3 py-1 border-2 border-border">
                     {filteredTodos.length}
                 </span>
             </div>
@@ -82,10 +82,7 @@ const CompletedSection = () => {
                     </div>
                 ) : (
                     currentTodos.map((todo) => (
-                        <CompletedTodoItem
-                            key={todo.id}
-                            todo={todo}
-                        />
+                        <CompletedTodoItem key={todo.id} todo={todo} />
                     ))
                 )}
             </div>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import AddTodoPanel from "./AddTodoPanel";
 import TodoList from "./TodoList";
 import CompletedSection from "./CompletedSection";
+import MobileAddTodoTrigger from "./MobileAddTodoTrigger";
 import Toast from "./Toast";
 import { RefreshTokenContext } from "@/lib/RefreshTokenContext";
 import { ToastContext } from "@/lib/ToastContext";
@@ -19,6 +20,7 @@ const TodoManager = () => {
     return (
         <RefreshTokenContext.Provider value={{ refreshToken, handleRefresh }}>
             <ToastContext.Provider value={{ showToast }}>
+                <MobileAddTodoTrigger />
                 <AddTodoPanel />
                 <TodoList />
                 <CompletedSection />
