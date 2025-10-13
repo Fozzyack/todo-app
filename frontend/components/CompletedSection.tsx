@@ -6,11 +6,14 @@ import Card from "./Card";
 import TodoItem from "./TodoItem";
 import { useRefreshTokenContext } from "@/lib/RefreshTokenContext";
 
-const TodoList = () => {
+const CompletedSection = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
+    const [activeTab, setActiveTab] = useState<"completed" | "cancelled">(
+        "completed"
+    );
     const [currentPage, setCurrentPage] = useState(1);
-    const { refreshToken } = useRefreshTokenContext();
     const todosPerPage = 4;
+    const { refreshToken } = useRefreshTokenContext();
 
     const fetchTodos = () => {
         fetch(`${getBackendUrl()}/Todos`, {
@@ -27,32 +30,54 @@ const TodoList = () => {
         setCurrentPage(1);
     }, [refreshToken]);
 
-    const uncompletedTodos = todos.filter(
-        (todo) => !todo.completed && !todo.cancelled
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [activeTab]);
+
+    const filteredTodos = todos.filter((todo) =>
+        activeTab === "completed" ? todo.completed : todo.cancelled
     );
-    const totalPages = Math.ceil(uncompletedTodos.length / todosPerPage);
+
+    const totalPages = Math.ceil(filteredTodos.length / todosPerPage);
     const indexOfLastTodo = currentPage * todosPerPage;
     const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-    const currentTodos = uncompletedTodos.slice(
-        indexOfFirstTodo,
-        indexOfLastTodo
-    );
+    const currentTodos = filteredTodos.slice(indexOfFirstTodo, indexOfLastTodo);
+
     return (
-        <Card className="sm:flex md:block md:col-span-7 md:order-first flex flex-col gap-7 border-secondary bg-background-dark/85 shadow-brutal-secondary-lg">
-            <div className="flex items-center gap-4 justify-between">
-                <h3 className="font-mono text-secondary uppercase tracking-[0.3em] mb-0">
-                    [TASKS::ACTIVE]
-                </h3>
-                <span className="font-mono text-xs text-border px-3 py-1 border-2 border-border">
-                    {currentTodos.length}
+        <Card className="md:col-span-12 flex flex-col gap-7 border-tertiary bg-background-dark/85 shadow-brutal-tertiary-lg">
+            <div className="flex items-center gap-4 border-b-4 border-border-dark pb-4">
+                <button
+                    type="button"
+                    onClick={() => setActiveTab("completed")}
+                    className={`font-mono text-sm uppercase tracking-[0.3em] px-6 py-3 border-4 transition-all duration-200 ${
+                        activeTab === "completed"
+                            ? "border-tertiary bg-tertiary/20 text-tertiary shadow-brutal-muted-sm -translate-x-1 -translate-y-1"
+                            : "border-border bg-background text-border hover:-translate-x-1 hover:-translate-y-1"
+                    }`}
+                >
+                    [COMPLETED]
+                </button>
+                <button
+                    type="button"
+                    onClick={() => setActiveTab("cancelled")}
+                    className={`font-mono text-sm uppercase tracking-[0.3em] px-6 py-3 border-4 transition-all duration-200 ${
+                        activeTab === "cancelled"
+                            ? "border-tertiary bg-tertiary/20 text-tertiary shadow-brutal-muted-sm -translate-x-1 -translate-y-1"
+                            : "border-border bg-background text-border hover:-translate-x-1 hover:-translate-y-1"
+                    }`}
+                >
+                    [CANCELLED]
+                </button>
+                <span className="ml-auto font-mono text-xs text-border px-3 py-1 border-2 border-border">
+                    {filteredTodos.length}
                 </span>
             </div>
-            <hr className="my-4 mborder-t-2 border-border-dark" />
+
             <div className="flex flex-col gap-4">
-                {uncompletedTodos.length === 0 ? (
+                {filteredTodos.length === 0 ? (
                     <div className="text-center py-12 text-border font-mono">
                         <p className="text-sm uppercase tracking-[0.2em]">
-                            [NO_TASKS_FOUND]
+                            [NO_{activeTab.toUpperCase()}_TASKS]
                         </p>
                     </div>
                 ) : (
@@ -65,7 +90,8 @@ const TodoList = () => {
                     ))
                 )}
             </div>
-            {uncompletedTodos.length > 0 && (
+
+            {filteredTodos.length > 0 && (
                 <div className="flex items-center justify-between pt-4 border-t-2 border-border-dark mt-6">
                     <button
                         type="button"
@@ -100,4 +126,4 @@ const TodoList = () => {
     );
 };
 
-export default TodoList;
+export default CompletedSection;

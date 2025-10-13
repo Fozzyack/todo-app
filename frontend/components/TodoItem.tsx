@@ -3,28 +3,32 @@
 import { getBackendUrl } from "@/lib/BackendURL";
 import { useState } from "react";
 import Card from "./Card";
+import { useRefreshTokenContext } from "@/lib/RefreshTokenContext";
 
 type TodoItemProps = {
     todo: Todo;
-    onFinishRequest: () => void;
 };
 
-const TodoItem = ({ todo, onFinishRequest}: TodoItemProps) => {
+const TodoItem = ({ todo }: TodoItemProps) => {
     const [loading, setLoading] = useState(false);
+    const { handleRefresh } = useRefreshTokenContext();
 
     const handleComplete = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`${getBackendUrl()}/Todos/complete/${todo.id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ completed: true }),
-            });
+            const res = await fetch(
+                `${getBackendUrl()}/Todos/complete/${todo.id}`,
+                {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ completed: true }),
+                }
+            );
+            handleRefresh();
             if (!res.ok) {
                 throw new Error(`Failed to complete todo: ${res.status}`);
             }
-            onFinishRequest();
         } catch (error) {
             console.error(error);
         } finally {
@@ -32,19 +36,22 @@ const TodoItem = ({ todo, onFinishRequest}: TodoItemProps) => {
         }
     };
 
-    const handleCancel= async () => {
+    const handleCancel = async () => {
         try {
             setLoading(true);
-            const res = await fetch(`${getBackendUrl()}/Todos/cancel/${todo.id}`, {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                credentials: "include",
-                body: JSON.stringify({ cancelled: true }),
-            });
+            const res = await fetch(
+                `${getBackendUrl()}/Todos/cancel/${todo.id}`,
+                {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ cancelled: true }),
+                }
+            );
             if (!res.ok) {
                 throw new Error(`Failed to cancel todo: ${res.status}`);
             }
-            onFinishRequest();
+            handleRefresh();
         } catch (error) {
             console.error(error);
         } finally {
@@ -75,22 +82,22 @@ const TodoItem = ({ todo, onFinishRequest}: TodoItemProps) => {
                 </p>
             </div>
             <div className="flex flex-col items-center justify-end gap-2">
-            <button
-                type="button"
-                onClick={handleComplete}
-                disabled={loading}
-                className="font-mono text-xs uppercase tracking-[0.2em] px-4 py-2 border-4 border-tertiary bg-tertiary/10 text-tertiary shadow-brutal-muted-sm hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
-            >
-                {loading ? "[...]" : "[DONE]"}
-            </button>
-            <button
-                type="button"
-                onClick={handleCancel}
-                disabled={loading}
-                className="font-mono text-[0.6em] font-bold uppercase tracking-[0.2em] text-red-500  hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
-            >
-                {loading ? "" : "[CANCEL]"}
-            </button>
+                <button
+                    type="button"
+                    onClick={handleComplete}
+                    disabled={loading}
+                    className="font-mono text-xs uppercase tracking-[0.2em] px-4 py-2 border-4 border-tertiary bg-tertiary/10 text-tertiary shadow-brutal-muted-sm hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                >
+                    {loading ? "[...]" : "[DONE]"}
+                </button>
+                <button
+                    type="button"
+                    onClick={handleCancel}
+                    disabled={loading}
+                    className="font-mono text-[0.6em] font-bold uppercase tracking-[0.2em] text-red-500  hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                >
+                    {loading ? "" : "[CANCEL]"}
+                </button>
             </div>
         </Card>
     );

@@ -5,5 +5,9 @@ type Todo = {
     dueDate: string;
     completed: boolean;
     cancelled: boolean;
+};
 
-}
+type RefreshTokenContextType = {
+    refreshToken: number;
+    handleRefresh: () => void;
+};

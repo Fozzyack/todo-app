@@ -16,5 +16,6 @@ public class AppDbContext : IdentityDbContext<User>
         base.OnModelCreating(builder);
 
         builder.Entity<Todo>().Property(t => t.CreatedAt).HasDefaultValueSql("NOW()");
+        builder.Entity<Todo>().Property(t => t.UpdatedAt).HasDefaultValueSql("NOW()");
     }
 }

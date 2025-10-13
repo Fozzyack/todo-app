@@ -1,6 +1,7 @@
 "use client";
 import Card from "@/components/Card";
 import { getBackendUrl } from "@/lib/BackendURL";
+import { useRefreshTokenContext } from "@/lib/RefreshTokenContext";
 import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 
@@ -17,7 +18,6 @@ const hiddenMobileClasses = "hidden md:flex";
 const AddTodoPanel = ({
     className = "",
     showOnMobile = false,
-    handleRefresh = () => {},
 }: AddTodoPanelProps) => {
     const [loading, setLoading] = useState(false);
     const [formDetails, setFormDetails] = useState({
@@ -26,8 +26,10 @@ const AddTodoPanel = ({
         date: "",
     });
 
+    const { handleRefresh } = useRefreshTokenContext();
+
     const handleFormChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         setFormDetails((prev) => ({
             ...prev,
@@ -52,7 +54,7 @@ const AddTodoPanel = ({
             if (!res.ok) {
                 console.log(await res.text());
                 throw new Error(
-                    `There was an Error Uploading | Status : ${res.status}`,
+                    `There was an Error Uploading | Status : ${res.status}`
                 );
             }
             const data = await res.json();
@@ -100,7 +102,7 @@ const AddTodoPanel = ({
     }
 
     return (
-        <div className="md:col-span-5 md:order-last">
+        <div className="md:col-span-5">
             <Card className={combinedClasses}>
                 <div className="space-y-7">
                     <div className="space-y-3">
