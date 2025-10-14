@@ -27,6 +27,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=db;Database=todo;Username=postgres;Password=postgres;Port=5432
+      - CorsOrigins=http://frontend:3000,http://localhost:3000
     depends_on:
       db:
         condition: service_healthy
