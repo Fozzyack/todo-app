@@ -45,13 +45,13 @@ builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
 
 builder.Services.AddAuthorization();
 
-builder.Services.ConfigureApplicationCookie(options =>
-{
-    options.Cookie.SameSite = SameSiteMode.None;
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-    options.Cookie.HttpOnly = true;
-    options.Cookie.Domain = ".frasier.dev";
-});
+// builder.Services.ConfigureApplicationCookie(options =>
+// {
+//     options.Cookie.SameSite = SameSiteMode.None;
+//     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+//     options.Cookie.HttpOnly = true;
+//     options.Cookie.Domain = ".frasier.dev";
+// });
 
 var app = builder.Build();
 
