@@ -42,6 +42,7 @@ services:
       - 3000:3000
     environment:
       - BACKEND_INTERNAL_URL=http://backend:8080
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:5141
     depends_on:
       - backend
     networks:
