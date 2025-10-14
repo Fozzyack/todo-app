@@ -21,9 +21,9 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(policy =>
     {
         policy
-            .WithOrigins("http://localhost:3000")
-            .WithMethods(["PATCH", "DELETE"])
-            .WithHeaders("Content-Type")
+            .WithOrigins("http://frontend:3000", "http://localhost:3000")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
             .AllowCredentials();
     });
 });
@@ -41,7 +41,10 @@ if (app.Environment.IsDevelopment())
     app.MapScalarApiReference();
 }
 
-app.UseHttpsRedirection();
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseCors();
 

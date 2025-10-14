@@ -1,8 +1,6 @@
-const backendURL = process.env.NEXT_PUBLIC_BACKEND_URL;
-
 export const getBackendUrl = () => {
-    if (!backendURL) {
-        throw new Error("No Backend_URL specified in environment variables");
+    if (typeof window === "undefined") {
+        return process.env.BACKEND_INTERNAL_URL || "http://backend:8080";
     }
-    return backendURL;
+    return "";
 };
