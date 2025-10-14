@@ -42,6 +42,7 @@ builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
         options.Cookie.SameSite = SameSiteMode.None;
         options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         options.Cookie.HttpOnly = true;
+        options.Cookie.Domain = ".frasier.dev";
     });
 
 builder.Services.AddAuthorization();
@@ -51,6 +52,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.SameSite = SameSiteMode.None;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.HttpOnly = true;
+    options.Cookie.Domain = ".frasier.dev";
 });
 
 var app = builder.Build();
