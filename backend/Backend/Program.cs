@@ -17,15 +17,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-var corsOrigins = builder.Configuration.GetValue<string>("CorsOrigins")?.Split(',') 
-    ?? new[] { "http://frontend:3000", "http://localhost:3000" };
 
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
         policy
-            .WithOrigins(corsOrigins)
+            .WithOrigins(["http://localhost:3000", "https://todo.frasier.dev", "http://frontend:3000"])
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();

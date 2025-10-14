@@ -27,7 +27,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__DefaultConnection=Host=db;Database=todo;Username=postgres;Password=postgres;Port=5432
-      - CorsOrigins=http://localhost:3000,https://todo.frasier.dev,http://frontend:3000,https://backend.todo.frasier.dev
+      - CorsOrigins=http://localhost:3000,https://todo.frasier.dev,http://frontend:3000
     depends_on:
       db:
         condition: service_healthy
@@ -39,11 +39,12 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - BACKEND_INTERNAL_URL=https://backend.todo.frasier.dev
+        - NEXT_PUBLIC_BACKEND_URL=https://backend.todo.frasier.dev
     ports:
       - 3000:3000
     environment:
       - BACKEND_INTERNAL_URL=https://backend.todo.frasier.dev
+      - NEXT_PUBLIC_BACKEND_URL=https://backend.todo.frasier.dev
     depends_on:
       - backend
     networks:
