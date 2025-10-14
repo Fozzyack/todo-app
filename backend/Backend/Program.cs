@@ -32,14 +32,26 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddAuthentication().AddCookie(IdentityConstants.ApplicationScheme, options =>
+builder.Services.AddIdentityCore<User>()
+    .AddEntityFrameworkStores<AppDbContext>()
+    .AddApiEndpoints();
+
+builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddCookie(IdentityConstants.ApplicationScheme, options =>
+    {
+        options.Cookie.SameSite = SameSiteMode.None;
+        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        options.Cookie.HttpOnly = true;
+    });
+
+builder.Services.AddAuthorization();
+
+builder.Services.ConfigureApplicationCookie(options =>
 {
     options.Cookie.SameSite = SameSiteMode.None;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.HttpOnly = true;
 });
-builder.Services.AddAuthorization();
-builder.Services.AddIdentityCore<User>().AddEntityFrameworkStores<AppDbContext>().AddApiEndpoints();
 
 var app = builder.Build();
 
