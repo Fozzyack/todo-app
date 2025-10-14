@@ -38,10 +38,13 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_BACKEND_URL=https://backend.todo.frasier.dev
     ports:
       - 3000:3000
     environment:
       - BACKEND_INTERNAL_URL=https://backend.todo.frasier.dev
+      - NEXT_PUBLIC_BACKEND_URL=https://backend.todo.frasier.dev
     depends_on:
       - backend
     networks:
