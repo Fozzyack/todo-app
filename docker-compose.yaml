@@ -41,8 +41,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      - BACKEND_INTERNAL_URL=http://backend:8080
-      - NEXT_PUBLIC_BACKEND_URL=https://backend.todo.frasier.dev
+      - BACKEND_INTERNAL_URL=https://backend.todo.frasier.dev
     depends_on:
       - backend
     networks:
