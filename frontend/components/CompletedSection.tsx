@@ -21,8 +21,18 @@ const CompletedSection = () => {
             credentials: "include",
         })
             .then((res) => res.json())
-            .then((data) => setTodos(data))
-            .catch((error) => console.log(error));
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    setTodos(data);
+                } else {
+                    console.error("Expected array, got:", data);
+                    setTodos([]);
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+                setTodos([]);
+            });
     };
 
     useEffect(() => {
