@@ -59,8 +59,7 @@ const AddTodoPanel = ({
                     `There was an Error Uploading | Status : ${res.status}`
                 );
             }
-            const data = await res.json();
-            console.log(data);
+            await res.json();
             handleRefresh();
             handleClose();
         } catch (error) {
