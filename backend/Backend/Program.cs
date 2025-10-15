@@ -39,11 +39,13 @@ builder
         IdentityConstants.ApplicationScheme,
         options =>
         {
+            options.Cookie.Name = "Todo0xAppDevelopment";
             options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             options.Cookie.HttpOnly = true;
             if (builder.Environment.IsProduction())
             {
+                options.Cookie.Name = "Todo0xApp";
                 options.Cookie.Domain = ".frasier.dev";
             }
         }
