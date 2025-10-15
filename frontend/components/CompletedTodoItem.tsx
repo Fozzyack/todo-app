@@ -46,7 +46,7 @@ const CompletedTodoItem = ({ todo }: CompletedTodoItemProps) => {
                     {todo.name}
                 </h4>
             </div>
-            <div className="text-right">
+            <div className="hidden md:block text-right">
                 <p className="font-mono text-xs text-border uppercase tracking-[0.1em]">
                     DUE
                 </p>
@@ -63,7 +63,7 @@ const CompletedTodoItem = ({ todo }: CompletedTodoItemProps) => {
                     type="button"
                     onClick={handleDelete}
                     disabled={loading}
-                    className="font-mono text-xs uppercase tracking-[0.2em] px-4 py-2 border-4 border-red-500 bg-red-500/10 text-red-500 shadow-brutal-muted-sm hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
+                    className="font-mono text-xs uppercase tracking-[0.1em] md:tracking-[0.2em] px-1 md:px-4 py-2 border-4 border-red-500 bg-red-500/10 text-red-500 shadow-brutal-muted-sm hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-x-0 disabled:hover:translate-y-0"
                 >
                     {loading ? "[...]" : "[DELETE]"}
                 </button>
