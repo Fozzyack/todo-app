@@ -59,7 +59,7 @@ const CompletedSection = () => {
                 <button
                     type="button"
                     onClick={() => setActiveTab("completed")}
-                    className={`font-mono md:text-sm uppercase tracking-[0.1em] md:tracking-[0.3em] px-2 md:px-6 py-3 border-4 transition-all duration-200 ${
+                    className={`font-mono text-sm uppercase tracking-[0.1em] md:tracking-[0.3em] px-2 md:px-6 py-3 border-4 transition-all duration-200 ${
                         activeTab === "completed"
                             ? "border-tertiary bg-tertiary/20 text-tertiary shadow-brutal-muted-sm -translate-x-1 -translate-y-1"
                             : "border-border bg-background text-border hover:-translate-x-1 hover:-translate-y-1"
@@ -70,7 +70,7 @@ const CompletedSection = () => {
                 <button
                     type="button"
                     onClick={() => setActiveTab("cancelled")}
-                    className={`font-mono text-xs md:text-sm uppercase tracking-[0.1em] md:tracking-[0.3em] px-2 md:px-6 py-3 border-4 transition-all duration-200 ${
+                    className={`font-mono text-sm uppercase tracking-[0.1em] md:tracking-[0.3em] px-2 md:px-6 py-3 border-4 transition-all duration-200 ${
                         activeTab === "cancelled"
                             ? "border-tertiary bg-tertiary/20 text-tertiary shadow-brutal-muted-sm -translate-x-1 -translate-y-1"
                             : "border-border bg-background text-border hover:-translate-x-1 hover:-translate-y-1"
