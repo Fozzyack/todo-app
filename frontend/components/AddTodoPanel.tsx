@@ -79,7 +79,7 @@ const AddTodoPanel = ({
 
     if (loading) {
         return (
-            <Card className={combinedClasses}>
+            <Card className={`${combinedClasses} col-span-1 md:col-span-5`}>
                 <div className="flex flex-col items-center justify-center">
                     <svg
                         aria-hidden="true"
