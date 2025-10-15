@@ -1,9 +1,9 @@
 using Backend;
 using Backend.Models;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
-using Microsoft.AspNetCore.HttpOverrides;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,31 +17,34 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
         policy
-            .WithOrigins(["http://localhost:3000", "https://todo.frasier.dev", "http://frontend:3000"])
+            .WithOrigins(
+                ["http://localhost:3000", "https://todo.frasier.dev", "http://frontend:3000"]
+            )
             .AllowAnyMethod()
             .AllowAnyHeader()
             .AllowCredentials();
     });
 });
 
-builder.Services.AddIdentityCore<User>()
-    .AddEntityFrameworkStores<AppDbContext>()
-    .AddApiEndpoints();
+builder.Services.AddIdentityCore<User>().AddEntityFrameworkStores<AppDbContext>().AddApiEndpoints();
 
-builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddCookie(IdentityConstants.ApplicationScheme, options =>
-    {
-        options.Cookie.SameSite = SameSiteMode.None;
-        options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        options.Cookie.HttpOnly = true;
-        options.Cookie.Domain = ".frasier.dev";
-    });
+builder
+    .Services.AddAuthentication(IdentityConstants.ApplicationScheme)
+    .AddCookie(
+        IdentityConstants.ApplicationScheme,
+        options =>
+        {
+            options.Cookie.SameSite = SameSiteMode.None;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.Cookie.HttpOnly = true;
+            // options.Cookie.Domain = ".frasier.dev";
+        }
+    );
 
 builder.Services.AddAuthorization();
 
@@ -54,6 +57,12 @@ builder.Services.AddAuthorization();
 // });
 
 var app = builder.Build();
+app.UseForwardedHeaders(
+    new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+    }
+);
 
 // Apply pending migrations on startup
 using (var scope = app.Services.CreateScope())
@@ -61,10 +70,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
-app.UseForwardedHeaders(new ForwardedHeadersOptions
-{
-    ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
