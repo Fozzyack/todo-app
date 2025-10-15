@@ -42,7 +42,10 @@ builder
             options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
             options.Cookie.HttpOnly = true;
-            options.Cookie.Domain = ".frasier.dev";
+            if (builder.Environment.IsProduction())
+            {
+                options.Cookie.Domain = ".frasier.dev";
+            }
         }
     );
 
