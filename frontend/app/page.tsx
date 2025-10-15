@@ -68,7 +68,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <Card className="border-4 border-secondary bg-background shadow-brutal-secondary-lg backdrop-blur">
+                    <Card className="hidden md:block border-4 border-secondary bg-background shadow-brutal-secondary-lg backdrop-blur">
                         <div className="flex items-center justify-between border-b-2 border-secondary/30 pb-3 font-mono text-xs uppercase text-secondary">
                             <span>[TERMINAL::ACTIVE]</span>
                             <div className="flex items-center gap-2">
@@ -86,7 +86,7 @@ export default function Home() {
                 <section id="features" className="space-y-10">
                     <div className="flex flex-wrap items-end justify-between gap-6">
                         <div className="max-w-xl space-y-3">
-                            <h2 className="border-l-4 border-primary pl-4 font-mono text-3xl font-black uppercase text-white">
+                            <h2 className="border-l-4 border-primary pl-4 font-mono text-sm md:text-3xl font-black uppercase text-white">
                                 [FEATURES::MAX_OUTPUT]
                             </h2>
                             <p className="border-l-4 border-slate-600 pl-4 font-mono text-sm text-slate-400">
