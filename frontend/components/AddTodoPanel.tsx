@@ -1,7 +1,9 @@
 "use client";
 import Card from "@/components/Card";
 import { getBackendUrl } from "@/lib/BackendURL";
+import { playSuccessSound } from "@/lib/playSuccessSound";
 import { useRefreshTokenContext } from "@/lib/RefreshTokenContext";
+import { useToastContext } from "@/lib/ToastContext";
 import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
 
@@ -27,6 +29,7 @@ const AddTodoPanel = ({
         description: "",
         date: new Date().toISOString().split("T")[0],
     });
+    const { showToast } = useToastContext();
 
     const { handleRefresh } = useRefreshTokenContext();
 
@@ -60,6 +63,13 @@ const AddTodoPanel = ({
                 );
             }
             await res.json();
+            setFormDetails({
+                name: "",
+                description: "",
+                date: new Date().toISOString().split("T")[0],
+            });
+            playSuccessSound();
+            showToast("[ADDED TODO]");
             handleRefresh();
             handleClose();
         } catch (error) {
