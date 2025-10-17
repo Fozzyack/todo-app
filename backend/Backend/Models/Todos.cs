@@ -17,6 +17,8 @@ public class Todo
 
     public bool Cancelled { get; set; } = false;
 
+    public int Priority { get; set; } = 0; // 0 = None, 1 = Low, 2 = Medium, 3 = High
+
     [ForeignKey(nameof(User))]
     [Required(AllowEmptyStrings = false)]
     public string? UserId { get; set; }

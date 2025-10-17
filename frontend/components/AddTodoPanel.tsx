@@ -27,6 +27,7 @@ const AddTodoPanel = ({
     const [formDetails, setFormDetails] = useState({
         name: "",
         description: "",
+        priority: 0,
         date: new Date().toISOString().split("T")[0],
     });
     const { showToast } = useToastContext();
@@ -34,11 +35,15 @@ const AddTodoPanel = ({
     const { handleRefresh } = useRefreshTokenContext();
 
     const handleFormChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
     ) => {
+        const value =
+            e.target.name === "priority"
+                ? parseInt((e.target as HTMLSelectElement).value, 10)
+                : e.target.value;
         setFormDetails((prev) => ({
             ...prev,
-            [e.target.name]: e.target.value,
+            [e.target.name]: value,
         }));
     };
 
@@ -53,6 +58,7 @@ const AddTodoPanel = ({
                 body: JSON.stringify({
                     name: formDetails.name,
                     description: formDetails.description,
+                    priority: formDetails.priority,
                     date: new Date(formDetails.date).toUTCString(),
                 }),
             });
@@ -66,6 +72,7 @@ const AddTodoPanel = ({
             setFormDetails({
                 name: "",
                 description: "",
+                priority: 0,
                 date: new Date().toISOString().split("T")[0],
             });
             playSuccessSound();
@@ -165,23 +172,51 @@ const AddTodoPanel = ({
                                 placeholder="Give a quick overview so future you knows what to do."
                             />
                         </div>
-                        <div className="space-y-3">
-                            <label
-                                className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
-                                htmlFor="todo-due"
-                            >
-                                Due
-                            </label>
-                            <input
-                                className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
-                                id="todo-due"
-                                onChange={handleFormChange}
-                                name="date"
-                                value={formDetails.date}
-                                placeholder="Choose a date"
-                                type="date"
-                            />
-                        </div>
+                         <div className="space-y-3">
+                             <label
+                                 className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
+                                 htmlFor="todo-priority"
+                             >
+                                 Priority
+                             </label>
+                             <select
+                                 className={`w-full border-4 px-4 py-3 text-sm font-semibold text-white shadow-brutal-muted-sm transition-all duration-150 bg-background ${
+                                     formDetails.priority === 3
+                                         ? "border-red-500 shadow-[4px_4px_0_0_#dc2626]"
+                                         : formDetails.priority === 2
+                                           ? "border-yellow-500 shadow-[4px_4px_0_0_#ca8a04]"
+                                           : formDetails.priority === 1
+                                             ? "border-blue-500 shadow-[4px_4px_0_0_#3b82f6]"
+                                             : "border-border"
+                                 }`}
+                                 id="todo-priority"
+                                 name="priority"
+                                 onChange={handleFormChange}
+                                 value={formDetails.priority}
+                             >
+                                 <option value={0}>None</option>
+                                 <option value={1}>Low</option>
+                                 <option value={2}>Medium</option>
+                                 <option value={3}>High</option>
+                             </select>
+                         </div>
+                         <div className="space-y-3">
+                             <label
+                                 className="inline-flex items-center gap-3 border-4 border-secondary bg-secondary/10 px-4 py-2 font-mono text-[0.7rem] uppercase tracking-[0.3em] text-secondary shadow-brutal-secondary-sm"
+                                 htmlFor="todo-due"
+                             >
+                                 Due
+                             </label>
+                             <input
+                                 className="w-full border-4 border-border bg-background px-4 py-3 text-sm font-semibold text-slate-100 placeholder:text-slate-500 shadow-brutal-muted-sm transition-transform duration-150"
+                                 id="todo-due"
+                                 onChange={handleFormChange}
+                                 name="date"
+                                 value={formDetails.date}
+                                 placeholder="Choose a date"
+                                 type="date"
+                             />
+                         </div>
                         <button
                             className="inline-flex w-full items-center justify-center gap-2 border-4 border-primary bg-primary px-5 py-3 text-sm font-black uppercase tracking-[0.3em] text-background-dark shadow-brutal-primary transition-transform duration-150 hover:-translate-y-1 hover:-translate-x-1 hover:bg-primary/90 focus:-translate-y-1 focus:-translate-x-1 focus:outline-none"
                             type="submit"

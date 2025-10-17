@@ -9,9 +9,13 @@ public class GetTodoRequest
     [Required(AllowEmptyStrings = false)]
     public string? Name { get; set; }
 
+    [Required]
+    public int Priority { get; set; }
+
     public string? Description { get; set; }
 
     public bool Completed { get; set; }
+
     
     public bool Cancelled { get; set; }
 

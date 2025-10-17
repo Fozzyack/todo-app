@@ -36,6 +36,7 @@ public class TodosController : BaseController
                     Id = todo.Id,
                     Name = todo.Name,
                     Description = todo.Description,
+                    Priority = todo.Priority,
                     DueDate = todo.DueDate,
                     Cancelled = todo.Cancelled,
                     Completed = todo.Completed,
@@ -60,6 +61,7 @@ public class TodosController : BaseController
             Name = request.Name,
             Description = request.Description,
             UserId = userId,
+            Priority = request.Priority,
             DueDate = DateTime.Parse(request.Date).ToUniversalTime(),
         };
 

@@ -1,6 +1,14 @@
+enum Priority {
+    None = 0,
+    Low = 1,
+    Medium = 2,
+    High = 3,
+}
+
 type Todo = {
     id: string;
     name: string;
+    priority: Priority;
     description: string;
     dueDate: string;
     completed: boolean;
@@ -15,3 +23,4 @@ type RefreshTokenContextType = {
 type ToastContextType = {
     showToast: (message: string) => void;
 };
+

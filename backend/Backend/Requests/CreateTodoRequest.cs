@@ -9,6 +9,8 @@ public class CreateTodoRequest
 
     public string? Description { get; set; }
 
+    public int Priority { get; set; }
+
     [Required]
     public string? Date { get; set; }
 }
